@@ -1,0 +1,253 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #172033;
+  background: #f1f5f9;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 18rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.shell {
+  width: min(100% - 2rem, 62rem);
+  margin-inline: auto;
+}
+
+.hero {
+  padding: 2.5rem 0 3rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #0ea5e9);
+}
+
+.hero h1 {
+  margin: 0.25rem 0 0.75rem;
+  font-size: clamp(1.35rem, 7vw, 3.75rem);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.hero p:last-child {
+  max-width: 44rem;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1rem 2rem;
+}
+
+main > section {
+  padding: 1.25rem;
+  border: 1px solid #dbe3ef;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 0.75rem 2rem rgb(15 23 42 / 8%);
+}
+
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0.25rem 0 0.75rem;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 2.5rem 0.7rem 0.8rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.7rem;
+  color: inherit;
+  background: #ffffff;
+  font: inherit;
+}
+
+select:disabled {
+  color: #64748b;
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgb(37 99 235 / 30%);
+  outline-offset: 2px;
+}
+
+.catalog-status {
+  min-height: 1.5rem;
+  margin: 0.45rem 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.origin-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.origin-card {
+  padding: 1.25rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.85rem;
+  background: #f8fafc;
+}
+
+.coordinates {
+  display: block;
+  min-height: 3rem;
+  margin: 0.75rem 0 1rem;
+  padding: 0.75rem;
+  border-radius: 0.65rem;
+  color: #334155;
+  background: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+button {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 0.7rem;
+  color: #ffffff;
+  background: #2563eb;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button.secondary {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+button:disabled {
+  color: #64748b;
+  background: #e2e8f0;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.notification-actions {
+  margin-top: 1rem;
+}
+
+.result {
+  display: block;
+  min-height: 4.5rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  color: #0f172a;
+  background: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 750;
+}
+
+#distance-result {
+  text-align: center;
+}
+
+footer {
+  padding: 1.5rem 0 2.5rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 46rem) {
+  main {
+    gap: 1.5rem;
+    padding-block: 1.5rem 3rem;
+  }
+
+  main > section {
+    padding: 2rem;
+  }
+
+  .origin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notification-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    color: #e2e8f0;
+    background: #0f172a;
+  }
+
+  main > section,
+  select {
+    background: #172033;
+  }
+
+  select:disabled {
+    color: #94a3b8;
+    background: #1e293b;
+  }
+
+  main > section,
+  .origin-card {
+    border-color: #334155;
+  }
+
+  .origin-card,
+  .result {
+    color: #e2e8f0;
+    background: #1e293b;
+  }
+
+  .coordinates {
+    color: #cbd5e1;
+    background: #334155;
+  }
+
+  .catalog-status,
+  footer {
+    color: #94a3b8;
+  }
+}

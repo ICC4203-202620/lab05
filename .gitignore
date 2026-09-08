@@ -1,0 +1,5 @@
+sender/.venv/
+sender/__pycache__/
+sender/private_key.pem
+sender/public_key.pem
+sender/subscription.json

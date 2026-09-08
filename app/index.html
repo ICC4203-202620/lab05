@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta
+      name="description"
+      content="Calcula la distancia en línea recta hasta un restaurante de Santiago"
+    />
+    <link rel="manifest" href="./app.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Distancia a restaurantes</title>
+    <script src="./database.js" defer></script>
+    <script src="./app.js" defer></script>
+    <script src="./register-sw.js" defer></script>
+    <script src="./notifications.js" defer></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="shell">
+        <p class="eyebrow">¿Qué tan lejos?</p>
+        <h1>Restaurantes de Santiago</h1>
+        <p>Selecciona un restaurante de destino y calcula qué tan lejos está.</p>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section aria-labelledby="restaurant-title">
+        <h2 id="restaurant-title">¿Dónde quieres ir?</h2>
+        <select id="restaurant-select" aria-labelledby="restaurant-title" disabled>
+          <option value="">Catálogo de restaurantes no disponible</option>
+        </select>
+        <p id="restaurant-status" class="catalog-status" role="status">
+          El catálogo de restaurantes no se encuentra disponible.
+        </p>
+
+        <output
+          id="restaurant-coordinates"
+          class="coordinates"
+          aria-live="polite"
+          hidden
+        >
+        </output>
+      </section>
+
+      <section id="origins-section" aria-labelledby="origins-title">
+        <h2 id="origins-title">¿Dónde estás?</h2>
+
+        <div class="origin-grid">
+          <article class="origin-card" aria-labelledby="station-title">
+            <h3 id="station-title">Estación de Metro</h3>
+            <select id="station-select" aria-labelledby="station-title" disabled>
+              <option value="">Catálogo de estaciones no disponible</option>
+            </select>
+            <p id="station-status" class="catalog-status" role="status">
+              El catálogo de estaciones no se encuentra disponible.
+            </p>
+
+            <output
+              id="station-coordinates"
+              class="coordinates"
+              aria-live="polite"
+              hidden
+            >
+            </output>
+
+            <button id="calculate-station" type="button" disabled>
+              Calcular distancia
+            </button>
+          </article>
+
+          <section
+            id="location-section"
+            class="origin-card"
+            aria-labelledby="location-title"
+            hidden
+          >
+            <h3 id="location-title">Mi ubicación</h3>
+
+            <output id="location-output" class="coordinates" aria-live="polite">
+              Comprobando el permiso…
+            </output>
+
+            <div class="actions">
+              <button id="request-location" type="button">
+                Obtener ubicación
+              </button>
+              <button
+                id="calculate-location"
+                class="secondary"
+                type="button"
+                disabled
+              >
+                Calcular distancia
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section aria-labelledby="notifications-title">
+        <h2 id="notifications-title">Notificaciones</h2>
+        <p id="notifications-status" class="catalog-status" role="status">
+          Comprobando disponibilidad y permiso…
+        </p>
+        <div class="actions notification-actions">
+          <button id="enable-notifications" type="button">
+            Habilitar notificaciones
+          </button>
+          <button id="download-subscription" class="secondary" type="button" disabled>
+            Crear y descargar suscripción
+          </button>
+        </div>
+      </section>
+
+      <section id="distance-section" aria-labelledby="distance-title" hidden>
+        <h2 id="distance-title">¿Qué tan lejos?</h2>
+        <output id="distance-result" class="result" aria-live="polite">
+        </output>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">
+        ICC4203 · Aplicaciones Móviles · Notificaciones Web Push
+      </div>
+    </footer>
+  </body>
+</html>

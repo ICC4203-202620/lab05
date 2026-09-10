@@ -132,7 +132,7 @@ El comando crea `private_key.pem` y `public_key.pem`. Luego, obtener la represen
 vapid --applicationServerKey
 ```
 
-Copiar el valor completo presentado por el segundo comando. No se debe volver a ejecutar `vapid --gen`, porque reemplazaría el par y las suscripciones creadas con la clave pública anterior dejarían de corresponder con la clave privada.
+Copiar el valor completo presentado por el segundo comando, y si la salida inicia con `Application Server Key`, copiar sólo el código. No se debe volver a ejecutar `vapid --gen`, porque reemplazaría el par y las suscripciones creadas con la clave pública anterior dejarían de corresponder con la clave privada.
 
 La clave pública no es secreta y se entrega al navegador. La clave privada identifica al emisor y debe permanecer en `sender/`. Los archivos de claves están excluidos mediante `.gitignore` y nunca se deben incorporar al ZIP de la aplicación.
 
@@ -164,7 +164,7 @@ Si el origen ya se utilizó en laboratorios anteriores, abrir DevTools y realiza
 
 En `notifications.js`, completar `requestNotificationPermission()` para que:
 
-1. Retorne `null` si las capacidades requeridas no se encuentran disponibles
+1. Finalice si las capacidades requeridas no se encuentran disponibles
 2. Invoque `Notification.requestPermission()` solamente si `Notification.permission` es `default`
 3. Retorne directamente el permiso vigente si su valor es `granted` o `denied`
 
@@ -177,11 +177,11 @@ Presionar `Habilitar notificaciones` y conceder el permiso. Si previamente se ha
 Completar `showConnectionNotification(message)` para que:
 
 1. Finalice si las capacidades no están disponibles o si el permiso no es `granted`
-2. Espere `navigator.serviceWorker.ready`
+2. Espere `navigator.serviceWorker.ready` en la definición de `registration`
 3. Invoque `registration.showNotification(...)` con el título `Estado de conexión`
 4. Utilice el argumento `message` como cuerpo
 5. Use un mismo `tag` para que un cambio de estado pueda reemplazar la notificación anterior
-6. Guarde `./` en `data.url`, de modo que seleccionar la notificación abra la aplicación
+6. Guarde `"./"` en `data.url`, de modo que seleccionar la notificación abra la aplicación
 
 Los listeners `online` y `offline` ya invocan esta función con los mensajes correspondientes.
 
@@ -193,7 +193,7 @@ Estas notificaciones se producen por eventos de la página. Cerrar la pestaña y
 
 Completar `getOrCreatePushSubscription()` con el siguiente flujo:
 
-1. Esperar `navigator.serviceWorker.ready`
+1. Espere `navigator.serviceWorker.ready` en la definición de `registration`
 2. Consultar la suscripción mediante `registration.pushManager.getSubscription()`
 3. Retornar la suscripción si ya existe
 4. Si no existe, invocar `registration.pushManager.subscribe(...)`
@@ -224,10 +224,10 @@ Cada mensaje recibido mediante esta suscripción debe producir una notificación
 Completar el listener de `notificationclick` para que:
 
 1. Cierre `event.notification`
-2. Obtenga `event.notification.data.url` o utilice `./` como alternativa
+2. Obtenga `event.notification.data.url` o, si es nulo, utilice `"./"` como alternativa
 3. Entregue a `event.waitUntil(...)` una operación que busque las ventanas controladas mediante `clients.matchAll({ type: 'window' })`
 4. Si existe una ventana, navegue hacia la ruta y la enfoque
-5. Si no existe una ventana, la abra mediante `clients.openWindow(...)`
+5. Si no existe una ventana, abra una mediante `clients.openWindow(...)`
 
 La ruta relativa se debe resolver contra `self.registration.scope`. No se debe acceder a `document`, `window` ni otros elementos del DOM desde el service worker.
 
@@ -237,7 +237,7 @@ En `app.js`, completar `selectFeaturedRestaurantFromUrl()`. La función se invoc
 
 1. Leer el parámetro `restaurant` desde `window.location.search`
 2. Comprobar mediante `findPlace(restaurants, restaurantId)` que el identificador pertenezca al catálogo cargado
-3. Asignar el identificador a `restaurantSelect.value`
+3. Asignar `restaurantSelect.value` como el restaurante buscado
 4. Generar un evento `change` sobre el selector
 
 La asignación de `value` no genera automáticamente `change`. Este evento es necesario para ejecutar el listener existente, mostrar las coordenadas y actualizar los botones de cálculo.
